@@ -1,0 +1,152 @@
+{{ define "index" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html, body{
+            scroll-behavior: smooth;
+            background: rgb(255, 255, 255);
+            width: 100%;
+            height: 100%;
+        }
+        header{
+            height: 100px;
+            width: auto;
+            background: linear-gradient(to right, #CB11AB, #491173);
+            position: relative;
+            top: 0;
+            display: flex;
+            align-items: center;
+        }
+        a{
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 35px;
+            line-height: 30px;
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 100px;
+        }
+        .main_block_input{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .block_input{
+            display: flex;
+            align-items: center;
+            padding: 5px 0px;
+        }
+        label{
+            font-family: 'Roboto Flex', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 25px;
+            line-height: 30px;
+            color: #000000;
+            text-decoration: none;
+        }
+        .input{
+            border-radius: 2px;
+            background: #f7f7f7;
+            color: #000000;
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+            resize: none;
+            font-weight: 400;
+            font-size: 18px;
+            padding: 10px;
+            margin: 20px;
+            height: 29px;
+            border: 1px solid black;
+        }
+        button{
+            font-weight: 400;
+            font-size: 18px;
+            color: #ffffff;
+            padding: 15px 30px;
+            background: #491173;
+            border-radius: 2px;
+            transition: 0.5s;
+            text-decoration: none;
+            border: none;
+        }
+        button:hover{
+            background:#491173;
+            color: #ffffff;
+            box-shadow: 0 0 1px #491173,
+                        0 0 2px #491173,
+                        0 0 3px #491173,
+                        0 0 4px #491173;
+        }
+        .block_order{
+            margin-left: 100px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="">WILDBERRISE</a>
+    </header>
+    <form action="/returnId" method="post">
+        <div class="main_block_input">
+            <div class="block_input">
+                <label for="">Ваш ID</label><br><br>
+                <input type="text" name="id" id="id" placeholder="Введите id заказа" class="input">
+            </div>
+            <button>Отправить</button>
+        </div>
+        <div class="block_order">
+            <div class="block_input">
+                <label for="">По Вашему ID {{ .OrderUID }} было найдено:</label>
+            </div>
+            <div class="block_input">
+                <label for="">Трек номер: {{ .TrackNumber }}</label>
+            </div>
+            <div class="block_input">
+                <label for="">Имя заказчика: {{ .Delivery.Name }}</label>
+            </div>
+            <div class="block_input">
+                <label for="">Телефон заказчика: {{ .Delivery.Phone }}</label>
+            </div>
+            <div class="block_input">
+                <label for="">Email заказчика: {{ .Delivery.Email }}</label>
+            </div>
+            <div class="block_input">
+                <label for="">Номер zip: {{ .Delivery.Zip }}</label>
+            </div>
+            <div class="block_input">
+                <label for="">Адрес получения заказа: {{ .Delivery.City }}, {{ .Delivery.Region }}, {{ .Delivery.Address }}
+                    </label>
+            </div>
+            <div class="block_input">
+                <label for="">Название бренда: {{ .Items.Brand }}</label>
+            </div>
+            <div class="block_input">
+                <label for="">Размер: {{ .Items.Size }}</label>
+            </div>
+            <div class="block_input">
+                <label for="">Итоговая цена: {{ .Items.TotalPrice }}</label>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+
+{{ end }}
